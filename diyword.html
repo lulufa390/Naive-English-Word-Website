@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+	<!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="study1.html"><i class="fa fa-gear"></i> <strong>千词斩</strong></a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">                         
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+		
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">					
+					<li>
+                        <a href="study1.html"><i class="fa fa-qrcode"></i>单词集学习</a>												
+                    </li>
+					<li>
+                        <a href="test1.html"><i class="fa fa-bar-chart-o"></i>测试</a>
+                    </li>
+					<li>
+                        <a href="table.html"><i class="fa fa-table"></i>单词总览</a>
+                    </li>
+					<li>
+                        <a href="diyword.html" class="active-menu"><i class="fa fa-edit"></i>自定义单词</a>
+                    </li>
+					<li>
+                        <a href="progress.html"><i class="fa fa-fw fa-file"></i>进度查询</a>
+                    </li>                                                                                                                      
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+			 <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            自定义单词 <small>添加你需要的词汇</small>
+                        </h1>
+                    </div>
+                </div> 
+                 <!-- /. ROW  -->
+              <div class="row">
+                <div class="col-lg-12">
+                   
+                  
+                       
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form action="newword.php" class="form-horizontal" method="post", role="form">
+                                        
+                                        <div class="form-group">
+                                            <label>新建单词</label>
+                                            <input id="word" class="form-control" placeholder="请输入你要添加的单词">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>词性</label>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="v." checked="">v.
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="adj.">adj.
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="n.">n.
+                                                </label>
+                                            </div>
+											<div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="adv.">adv.
+                                                </label>
+                                            </div>
+											<div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="conj.">conj.
+                                                </label>
+                                            </div>
+											<div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="prep.">prep.
+                                                </label>
+                                            </div>
+											<div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="art.">art.
+                                                </label>
+                                            </div>
+											<div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="pron.">pron.
+                                                </label>
+                                            </div>
+											<div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="num.">num.
+                                                </label>
+                                            </div>
+                                        </div>
+										
+										
+                                        <div class="form-group">
+                                            <label>释义</label>
+                                            <textarea id="explanation" class="form-control" rows="3", placeholder="请输入单词意思"></textarea>
+                                        </div>
+                                        
+                                        
+                                        
+                                                                                                                   
+                                        <button id="submit" type="submit" class="btn btn-default">添加</button>
+										
+										<br></br>
+										<div class="form-group">
+                                            <label>删除单词</label>
+                                            <input id="delete" class="form-control" placeholder="请输入你要删除的单词">
+                                        </div>
+										
+                                        <button id="reset" class="btn btn-default">删除</button>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                
+                                <!-- /.col-lg-6 (nested) -->
+                            
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+			<footer><p></p></footer>
+			</div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+      <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
+	
+	<script>
+	
+		$('#submit').click(function(e){
+			var word = $('#word').val();
+			var explanation = $('#explanation').val();
+			
+			var property = $('input:radio[name="optionsRadios"]:checked').val();
+								
+			$.ajax({
+				type:"POST",
+				url: "newword.php",
+				data: {nword:word, nproperty:property, nexplanation:explanation},
+				success: function(html){
+					 if(html=='true'){
+						alert("自定义词汇添加成功！");
+					 }
+					 else{
+						alert("添加失败");
+					 }
+				}
+			})
+			
+			
+			return false;
+		})
+		
+		$('#reset').click(function(e){
+			var word = $('#delete').val();
+			
+			$.ajax({
+				type:"POST",
+				url: "deleteword.php",
+				data: {dword:word},
+				success: function(html){
+					 if(html=='true'){
+						alert("删除成功");
+					 }
+					 else{
+						alert("单词不存在");
+					 }
+				}
+			})
+			
+			
+			return false;
+		})
+	
+	</script>
+    
+   
+</body>
+</html>

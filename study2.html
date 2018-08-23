@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+	<!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="study1.html"><i class="fa fa-gear"></i> <strong>千词斩</strong></a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">                         
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+		
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+					<li>
+                        <a href="study1.html" class="active-menu"><i class="fa fa-qrcode"></i>单词集学习</a>												
+                    </li>
+					<li>
+                        <a href="test1.html"><i class="fa fa-bar-chart-o"></i>测试</a>
+                    </li>
+					<li>
+                        <a href="table.html"><i class="fa fa-table"></i>单词总览</a>
+                    </li>
+					<li>
+                        <a href="diyword.html" ><i class="fa fa-edit"></i>自定义单词</a>
+                    </li>
+					<li>
+                        <a href="progress.html"><i class="fa fa-fw fa-file"></i>进度查询</a>
+                    </li>                                                                                                                       
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+			 <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            正在学习 <small>请选择你是否认识该单词</small>
+                        </h1>
+                    </div>
+                </div> 
+                 <!-- /. ROW  -->
+                                 
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="word">
+                            Default Panel
+                        </div>
+                        <div class="panel-body" id="explanation">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                        </div>
+                        <div class="panel-footer">
+                            <p style="text-align: center">
+								<a href="#" id = "forget" class="btn btn-primary" align="center">不记得</a>
+								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								<a href="#" id = "remember" class="btn btn-primary" align="center">记得</a>
+							</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+                   
+                    <!-- /. ROW  -->
+				<footer><p></p></footer>
+					</div>
+			 <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+      <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
+	
+	<script>
+		var Ohref=window.location.href;
+		var arrhref=Ohref.split("?id=");
+		var words;
+		var cnt = [];
+		var index=0;
+		<!-- alert(arrhref[1]);	 -->
+		<!-- x=document.getElementById("fuck");  -->
+		<!-- x.innerHTML=arrhref[1] + " " + arrhref[2]; -->
+		<!-- alert(words.length); -->
+		
+		$.ajax({
+			type:"POST",
+			url: "searchword.php",
+			data: {list:arrhref[2], number:arrhref[1]},
+			async:false,
+			success: function(html){
+				if(html == "false"){
+					alert("没有这么多单词！");
+					window.location = "study1.html";
+				}
+				else{
+					words = eval(html);
+					for(let i =0;i<words.length;i++){
+						cnt.push(words[i][3]);
+					}
+				}
+				
+			}
+		})
+		
+		
+		xx=document.getElementById("word"); 
+		xx.innerHTML=words[index][0];
+		
+		x=document.getElementById("explanation"); 
+		x.innerHTML=words[index][1] + "<br/>" +words[index][2];
+		
+		
+		<!-- alert(words);	 -->
+		
+		$('#forget').click(function(e){
+			index++;
+			if(index == arrhref[1]){
+				alert("完成学习任务！");
+				window.location = "study1.html";
+			}
+			xx=document.getElementById("word"); 
+			xx.innerHTML=words[index][0];
+			
+			x=document.getElementById("explanation"); 
+			x.innerHTML=words[index][1] + "<br/>" +words[index][2];
+			
+			
+			
+			return false;
+		})
+		
+		$('#remember').click(function(e){
+			cnt[index]++;
+			index++;
+			if(index == arrhref[1]){
+				alert("完成学习任务！");
+				window.location = "study1.html";
+				
+				$.ajax({
+					type:"POST",
+					url: "update.php",
+					data: {list:arrhref[2], thewords:JSON.stringify(words), thecnt:JSON.stringify(cnt)},
+					success: function(html){
+						<!-- alert(html); -->
+						<!-- if(html="true"){ -->
+							<!-- alert("更新成功"); -->
+						<!-- } -->
+					}
+				})
+				
+			}
+			xx=document.getElementById("word"); 
+			xx.innerHTML=words[index][0];
+			
+			x=document.getElementById("explanation"); 
+			x.innerHTML=words[index][1] + "<br/>" +words[index][2];
+			
+			
+			
+			return false;
+		})
+		
+	
+	
+	</script>
+    
+   
+</body>
+</html>

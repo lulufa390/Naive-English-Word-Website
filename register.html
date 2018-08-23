@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/register-login.css">
+</head>
+<body>
+<div id="box"></div>
+<div class="cent-box register-box">
+	<div class="cent-box-header">
+		<h1 class="main-title">千词斩</h1>
+		<h2 class="sub-title">在线单词学习</h2>
+	</div>
+
+	<div class="cont-main clearfix">
+		<div class="index-tab">
+			<div class="index-slide-nav">
+				<a href="login.html">登录</a>
+				<a href="register.html" class="active">注册</a>
+				<div class="slide-bar slide-bar1"></div>				
+			</div>
+		</div>
+
+		<div class="login form">
+			<div class="group">
+			
+				<form action="register.php" class="form-horizontal" method="post">
+				<div class="group-ipt email">
+					<input type="email" name="email" id="email" class="ipt" placeholder="邮箱地址" required>
+				</div>
+				<div class="group-ipt user">
+					<input type="text" name="user" id="user" class="ipt" placeholder="选择一个用户名" required>
+				</div>
+				<div class="group-ipt password">
+					<input type="password" name="password" id="password" class="ipt" placeholder="设置登录密码" required>
+				</div>
+				<div class="group-ipt password1">
+					<input type="password" name="password1" id="password1" class="ipt" placeholder="重复密码" required>
+				</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="button">
+			<button type="submit" class="login-btn register-btn" id="button">注册</button>
+		</div>
+	</div>
+</div>
+
+<div class="footer">
+	<p>千词斩 - 在线单词学习</p>
+</div>
+
+<script src='js/particles.js' type="text/javascript"></script>
+<script src='js/background.js' type="text/javascript"></script>
+<script src='js/jquery.min.js' type="text/javascript"></script>
+<script src='js/layer.js' type="text/javascript"></script>
+
+<script>
+	
+
+	$(".login-btn").click(function(){
+		var email = $("#email").val();
+		var name = $("#user").val();
+		var password = $("#password").val();
+		var verify = $("#password1").val();
+		
+		var reg=/^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+		if(!reg.test(email)){
+			alert("邮件格式不合法！");
+			return false;
+		}
+		if(name.length < 6){
+			alert("用户名过短！");
+			return false;
+		}
+		
+		if(password.length < 6){
+			alert("密码过短！");
+			return false;
+		}
+		
+		if(password != verify){
+			alert("密码不一致！");
+			return false;
+		}
+		
+		
+		$.ajax({
+			type:"POST",
+			url: "register.php",
+			data: "myemail="+email+"&myname="+name+"&mypassword="+password,
+			success: function(html){
+				if(html=="exist") {
+					alert("用户已存在！");
+					
+				}
+				else if(html=="true") {
+				
+					alert("注册成功！");
+				}
+				else if(html=="table") {
+				
+					alert("建表失败！请注意用户名不要是数字！");
+				}
+				else{
+					alert("注册失败");
+				}	
+				
+			}
+		})
+		return false;
+
+	})
+	
+	
+	$("#remember-me").click(function(){
+		var n = document.getElementById("remember-me").checked;
+		if(n){
+			$(".zt").show();
+		}else{
+			$(".zt").hide();
+		}
+	})
+</script>
+</body>
+</html>

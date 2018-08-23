@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+	<!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="study1.html"><i class="fa fa-gear"></i> <strong>千词斩</strong></a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">                         
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+		
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+					<li>
+                        <a href="study1.html"><i class="fa fa-qrcode"></i>单词集学习</a>												
+                    </li>
+					<li>
+                        <a href="test1.html" class="active-menu"><i class="fa fa-bar-chart-o"></i>测试</a>
+                    </li>
+					<li>
+                        <a href="table.html"><i class="fa fa-table"></i>单词总览</a>
+                    </li>
+					<li>
+                        <a href="diyword.html"><i class="fa fa-edit"></i>自定义单词</a>
+                    </li>
+					<li>
+                        <a href="progress.html"><i class="fa fa-fw fa-file"></i>进度查询</a>
+                    </li>                                                                                                                          
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+			 <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            正在测试 <small>请选出单词的正确意思</small>
+                        </h1>
+                    </div>
+                </div> 
+                 <!-- /. ROW  -->
+                                 
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" id="word">
+                            Default Panel
+                        </div>
+                        <div class="panel-body" id="explanation">
+							<p>
+								<div class="radio">
+									<label id="choice1">
+										<input type="radio" name="optionsRadios" id="optionsRadios1" value="0" checked="">Radio 1
+									</label>
+								</div>
+								<div class="radio">
+									<label id="choice2">
+										<input type="radio" name="optionsRadios" id="optionsRadios2" value="1">Radio 2
+									</label>
+								</div>
+								<div class="radio">
+									<label id="choice3">
+										<input type="radio" name="optionsRadios" id="optionsRadios3" value="2">Radio 3
+									</label>
+								</div>
+                            </p>
+							
+                        </div>
+                        <div class="panel-footer">
+                            <p style="text-align: center">
+								<a href="#" id = "sure" class="btn btn-primary" align="center">确定选择</a>
+								
+							</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+                   
+                    <!-- /. ROW  -->
+				<footer><p></p></footer>
+					</div>
+			 <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+     <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+      <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script>
+	
+	<script>
+		var Ohref=window.location.href;
+		var arrhref=Ohref.split("?id=");
+		var words;
+		var cnt = [];
+		var index=0;
+		<!-- alert(arrhref[1]);	 -->
+		<!-- x=document.getElementById("fuck");  -->
+		<!-- x.innerHTML=arrhref[1] + " " + arrhref[2]; -->
+		<!-- alert(words.length); -->
+		
+		$.ajax({
+			type:"POST",
+			url: "test.php",
+			data: {list:arrhref[1]},
+			async:false,
+			success: function(html){
+				<!-- alert(html); -->
+				
+				words = eval(html);
+				if(words.length == 0){
+					alert("该单词集中不存在已学会单词，先去学习吧！");
+					window.location = "study1.html";
+				}
+				<!-- for(let i =0;i<words.length;i++){ -->
+					<!-- cnt.push(words[i][3]); -->
+				<!-- } -->
+			}
+		})
+		
+		
+		xx=document.getElementById("word"); 
+		xx.innerHTML=words[index][0];
+		
+		x=document.getElementById("choice1"); 
+		x.innerHTML='<input type="radio" name="optionsRadios" id="optionsRadios1" value="0" checked="">' +words[index][2];
+		x=document.getElementById("choice2"); 
+		x.innerHTML='<input type="radio" name="optionsRadios" id="optionsRadios2" value="1">'+words[index][3];
+		x=document.getElementById("choice3"); 
+		x.innerHTML='<input type="radio" name="optionsRadios" id="optionsRadios3" value="2">'+words[index][4];
+		
+		
+		
+		
+		$('#sure').click(function(e){
+			var property = $('input:radio[name="optionsRadios"]:checked').val();
+			if(property == words[index][5]){
+				alert("正确！");
+			}
+			else{
+				alert("错误！");
+			}
+			
+			index++;
+			if(index == words.length){				
+				window.location = "test1.html";
+			}
+			
+			xx=document.getElementById("word"); 
+			xx.innerHTML=words[index][0];
+			
+			x=document.getElementById("choice1"); 
+			x.innerHTML='<input type="radio" name="optionsRadios" id="optionsRadios1" value="0" checked="">' +words[index][2];
+			x=document.getElementById("choice2"); 
+			x.innerHTML='<input type="radio" name="optionsRadios" id="optionsRadios2" value="1">'+words[index][3];
+			x=document.getElementById("choice3"); 
+			x.innerHTML='<input type="radio" name="optionsRadios" id="optionsRadios3" value="2">'+words[index][4];
+			
+			
+			return false;
+		})
+		
+		
+		
+	
+	
+	</script>
+    
+   
+</body>
+</html>
