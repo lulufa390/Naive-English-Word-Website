@@ -1,2 +1,2 @@
 # Naive-English-Word-Website
-a naive website to memory English words
+This is a web application for memorizing English words.
