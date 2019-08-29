@@ -1,2 +1,2 @@
-# Naive-English-Word-Website
+# Words-Learner
 This is a web application for memorizing English words.
